@@ -4,12 +4,12 @@
   Its a 1D Pong Game on 44 WERMA MC35 Beacons
 
   based on 1D Pong by FlyingAngel - 18.4.2020
-  Pixtxa - 13.11.2023
+  Pixtxa - 05.12.2023
 */
 
 /*
 Arduino ESP32-S2 D1mini settings:
-Board: "ESP31S2 Dev Module"
+Board: "ESP32S2 Dev Module"
 USB CDC On Boot: "Enabled"
 CPU Frequency: "240MHz (WiFi)'
 Core Debug Level: "None"
@@ -99,11 +99,11 @@ byte beep_time = 2;                               // time to beep on each hit
 byte pcb_brightness = 10;                         // brightness of debug leds
 int game_speed_min = 50;                          // min game-speed
 int game_speed_max = 5;                           // max game-speed
-int game_speed_step = 1;                          // fasten up when change direction
-int ball_speed_max = 1;                           // max ball-speed
+int game_speed_step = 2;                          // fasten up when change direction
+int ball_speed_max = 3;                           // max ball-speed
 int ball_boost_0 = 25;                            // superboost on last position
 int ball_boost_1 = 15;                            // boost on forelast position
-int win_rounds = 10;                              // x winning rounds for winning game
+int win_rounds = 5;                               // x winning rounds for winning game
 int end_zone_size = 6;                            // size endzone
 
 // *********************************
