@@ -4,7 +4,7 @@
   Its a 1D Pong Game on 44 WERMA MC35 Beacons
 
   based on 1D Pong by FlyingAngel - 18.4.2020
-  Pixtxa - 05.12.2023
+  Pixtxa - 31.03.2024
 */
 
 /*
