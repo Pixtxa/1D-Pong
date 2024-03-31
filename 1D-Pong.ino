@@ -98,9 +98,9 @@ byte player_color[] = { COLOR_BLUE, COLOR_RED };  // colors of the players
 byte beep_time = 2;                               // time to beep on each hit
 byte pcb_brightness = 10;                         // brightness of debug leds
 int game_speed_min = 50;                          // min game-speed
-int game_speed_max = 5;                           // max game-speed
+int game_speed_max = 15;                          // max game-speed
 int game_speed_step = 2;                          // fasten up when change direction
-int ball_speed_max = 3;                           // max ball-speed
+int ball_speed_max = 9;                           // max ball-speed
 int ball_boost_0 = 25;                            // superboost on last position
 int ball_boost_1 = 15;                            // boost on forelast position
 int win_rounds = 5;                               // x winning rounds for winning game
@@ -498,13 +498,16 @@ void loop() {
         // ball_dir == +1  AND  i = 1  -->  player 1 is active player
         // only the button-press of the active player is stored
         {
-          player_button_pressed[i] = ball_pos;  //store position of pressed button
-          previous_button_pos = ball_pos;
-          previous_button = i;
-          previous_button_millis = millis();  // store time when button was pressed
-          last_hit_millis[i] = millis();
-          beep_pos = ball_pos;
-          beep_millis = millis();
+          if ((i==PLAYER_1 && ball_pos < (NUM_PIXELS/2+2)) || (i==PLAYER_2 && ball_pos >= (NUM_PIXELS/2-2))) //limit players range to half the field + 2 pixels
+          {
+            player_button_pressed[i] = ball_pos;  //store position of pressed button
+            previous_button_pos = ball_pos;
+            previous_button = i;
+            previous_button_millis = millis();  // store time when button was pressed
+            last_hit_millis[i] = millis();
+            beep_pos = ball_pos;
+            beep_millis = millis();
+          }
         }
       }
 
@@ -606,7 +609,7 @@ void loop() {
         }
         sub_state++;
       }
-      if (sub_state == 100) {
+      if (sub_state == 100 || (digitalRead(player_btn_pin[1-player_start]) == LOW) && sub_state > 5) {
         state = S_START_GAME;
       }
       break;
